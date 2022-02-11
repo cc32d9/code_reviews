@@ -28,6 +28,11 @@ default VM.
 Boost 1.67 is no longer a requirement. The software should work with
 newer versions of Boost.
 
+As eosvm is imported from EOSIO-2.1, a Mandel binary is not a drop-in
+for EOSIO. A node needs to start from a snapshot, because the Mandel
+state is incompatible with EOSIO-2.0. The blocks log is compatible
+with EOSIO-2.0.
+
 
 
 Git history review
@@ -64,6 +69,12 @@ Commit `18d80f22`: PR#5, cicd system for automated testing.
 
 Commit `1b701a20`: PR#6, backport 2.1 tester cmake. Among other
 changes, it removes the strict dependency on Boost 1.67.
+
+Commit `8748f596`: PR#7, backport 2.1 ACTION_RETURN_VALUE. This is a
+*consensus upgrade feature*. The following changes become active even
+before the feature is activated: snapshot format version 5;
+`action_trace` object gets a new field: `return_value`; state history
+plugin starts writing new types: `action_trace_v1`, `chain_config_v1`.
 
 
 
