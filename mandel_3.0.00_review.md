@@ -28,10 +28,11 @@ default VM.
 Boost 1.67 is no longer a requirement. The software should work with
 newer versions of Boost.
 
-As eosvm is imported from EOSIO-2.1, a Mandel nodeos binary is not a
-drop-in for EOSIO. A node needs to start from a snapshot, because the
-Mandel state is incompatible with EOSIO-2.0. The blocks log is
-compatible with EOSIO-2.0.
+A Mandel nodeos binary is not a drop-in for EOSIO, because of a newer
+chainbase version and changes in `global_property_object`. A node
+needs to start from a snapshot, because the Mandel state is
+incompatible with EOSIO-2.0. The blocks log is compatible with
+EOSIO-2.0.
 
 PR #25 and #26 are changing many files globally across the whole
 codebase, so they make it unpractical to cherry-pick any new updates
