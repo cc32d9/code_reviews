@@ -149,37 +149,65 @@ Kevin Heifner has provided a list of recent changes in EOSIO
 repository that are worth evaluating for backport into Mandel:
 
   1. Remove `history_plugin`.  The plugin is long deprecated,
-unstable, and unusable.
+  unstable, and unusable.
 
   2. SHiP enhancements. Many performance improvements were made in the
-develop-boxed branch.
+  `develop-boxed` branch.
 
-  3. `rodeos` bugfixes in develop-boxed branch. It is yet to be
-evaluated if Mandel needs it.
+  3. `rodeos` bugfixes in develop-boxed branch. Also related,
+  [PR#10625](https://github.com/EOSIO/eos/pull/10625). It is yet to be
+  evaluated if Mandel needs it.
 
   4. `net_plugin` bugfixes and improvements (develop branch of
-net_plugin).
+  net_plugin). 2.0 branch:
+  [PR#10651](https://github.com/EOSIO/eos/pull/10651),
+  [PR#10764](https://github.com/EOSIO/eos/pull/10764),
+  [PR#10961](https://github.com/EOSIO/eos/pull/10961),
+  [PR#11066](https://github.com/EOSIO/eos/pull/11066).
 
   5. `net_plugin` ssl support & security group (in 2.2 branch). Needs
-evaluation.
+  evaluation.
 
-  6. Transaction trace logging (in 2.1). There are additional loggers in
-`producer_plugin` for logging full traces of transactions.
+  6. Transaction trace logging (in 2.1). There are additional loggers
+  in `producer_plugin` for logging full traces of transactions.
 
   7. [New command line option
---snapshot-to-json](https://github.com/EOSIO/eos/pull/11058). This
-allows exporting the contents of a snapshot into a JSON file which can
-be used for data analysis and testing.
+  --snapshot-to-json](https://github.com/EOSIO/eos/pull/11058). This
+  allows exporting the contents of a snapshot into a JSON file which
+  can be used for data analysis and testing.
 
   8. [Fix boost:beast
-vulnerability](https://github.com/EOSIO/eos/pull/10981). Boost::beast
-uses hardcoded zlib which was vulnerable to CVE-2016-9840. This
-updates unpinned builds, and build scripts to use newer version of
-Boost, and for pinned builds to apply patch to address the
-vulnerability.
+  vulnerability](https://github.com/EOSIO/eos/pull/10981). Boost::beast
+  uses hardcoded zlib which was vulnerable to CVE-2016-9840. This
+  updates unpinned builds, and build scripts to use newer version of
+  Boost, and for pinned builds to apply patch to address the
+  vulnerability.
 
+  9. [audit tool](https://github.com/EOSIO/eos/pull/10772). The PR
+  adds a new HTTP RPC endpoint, `get_all_accounts`. The need for this
+  tool is doubtdul, as there are more efficient ways to retrieve all
+  accounts.
 
+  10. [amqp_trx_plugin](https://github.com/EOSIO/eos/tree/develop/plugins/amqp_trx_plugin). The
+  plugin is exporting raw transaction traces (in the same form as
+  state history plugin does) into an AMQP socket. It needs a filter by
+  accounts or contracts before being usable for production.
 
+  11. [Add map mode options for EOS VM OC code
+  cache](https://github.com/EOSIO/eos/pull/10683). The change is
+  improving the performance in EOSVM optimized compiler.
 
+  12. [Add new loggers for dumping transaction
+  trace](https://github.com/EOSIO/eos/pull/10051). The feature is
+  adding the ability to log full details of accepted or failed
+  transactions.
 
+  13. [Handle special case in
+  trim_blocklog_front](https://github.com/EOSIO/eos/pull/10370). This
+  is a bugfix for block trimming utility.
+
+  14. [bug in https](https://github.com/EOSIO/eos/pull/10767).
+
+  15. [Add total CPU and NET to
+  get_info](https://github.com/EOSIO/eos/pull/10932).
 
