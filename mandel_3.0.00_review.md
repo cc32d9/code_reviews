@@ -19,8 +19,8 @@ adopt one or the other software branches.
 
 
 
-Changes worth noting
---------------------
+Important notes
+---------------
 
 WABT virtual machine is no longer supported. `eos-vm-jit` is set as
 default VM.
@@ -140,3 +140,46 @@ Commit `368045ba`: PR#28, Increment codegen_version. It prevents the
 OC code cache from picking up the cache of 2.1.
 
 Commit `1a8407b3`: Mandel version `v3.0.0-rc1`
+
+
+Further development
+-------------------
+
+Kevin Heifner has provided a list of recent changes in EOSIO
+repository that are worth evaluating for backport into Mandel:
+
+  1. Remove `history_plugin`.  The plugin is long deprecated,
+unstable, and unusable.
+
+  2. SHiP enhancements. Many performance improvements were made in the
+develop-boxed branch.
+
+  3. `rodeos` bugfixes in develop-boxed branch. It is yet to be
+evaluated if Mandel needs it.
+
+  4. `net_plugin` bugfixes and improvements (develop branch of
+net_plugin).
+
+  5. `net_plugin` ssl support & security group (in 2.2 branch). Needs
+evaluation.
+
+  6. Transaction trace logging (in 2.1). There are additional loggers in
+`producer_plugin` for logging full traces of transactions.
+
+  7. [New command line option
+--snapshot-to-json](https://github.com/EOSIO/eos/pull/11058). This
+allows exporting the contents of a snapshot into a JSON file which can
+be used for data analysis and testing.
+
+  8. [Fix boost:beast
+vulnerability](https://github.com/EOSIO/eos/pull/10981). Boost::beast
+uses hardcoded zlib which was vulnerable to CVE-2016-9840. This
+updates unpinned builds, and build scripts to use newer version of
+Boost, and for pinned builds to apply patch to address the
+vulnerability.
+
+
+
+
+
+
